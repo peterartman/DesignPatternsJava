@@ -1,0 +1,40 @@
+class Client {
+    private StrategyBase strategy;
+
+    public Client(StrategyBase strategy) {
+        this.strategy = strategy;
+    }
+
+    public void callAlgorithm() {
+        System.out.println(strategy.algorithm());
+    }
+}
+
+abstract class StrategyBase {
+    public abstract String algorithm();
+}
+
+class ConcreteStrategyA extends StrategyBase {
+    public String algorithm() {
+        return "Concrete Strategy A";
+    }
+}
+
+class ConcreteStrategyB extends StrategyBase {
+    public String algorithm() {
+        return "Concrete Strategy B";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Client client = new Client(new ConcreteStrategyA());
+        client.callAlgorithm();
+
+        client.strategy = new ConcreteStrategyB();
+        client.callAlgorithm();
+
+        client.strategy = new ConcreteStrategyC();
+        client.callAlgorithm();
+    }
+}
